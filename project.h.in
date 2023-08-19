@@ -1,0 +1,2 @@
+#cmakedefine HTML_PATH "@HTML_PATH@"
+#cmakedefine LOG_FILE_PATH "@LOG_FILE_PATH@"

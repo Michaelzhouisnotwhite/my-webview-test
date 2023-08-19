@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My First Webview app</title>
+  </head>
+  <body>
+    <div style="width: auto;">
+      <button id="increment">Tap me</button>
+      <div>You tapped <span id="count">0</span> time(s).</div>
+      <button id="compute">Compute</button>
+
+      <input type="text" id="lnumber" placeholder="0" />
+      <input type="text" id="rnumber" placeholder="0"/>
+      <div>Result of computation: <span id="compute-result">0</span></div>
+    </div>
+    <script>
+      const [incrementElement, countElement, computeElement, computeResultElement] = document.querySelectorAll("#increment, #count, #compute, #compute-result");
+      const [lnumberElement, rnumberElement] = document.querySelectorAll("#lnumber, #rnumber");
+      document.addEventListener("DOMContentLoaded", () => {
+        incrementElement.addEventListener("click", () => {
+          window.increment().then((result) => {
+            countElement.textContent = result.count;
+          });
+        });
+        computeElement.addEventListener("click", () => {
+          computeElement.disabled = true;
+          //window.compute(8, 9).then((result) => {
+          //  computeResultElement.textContent = result;
+          //  computeElement.disabled = false;
+          // });
+          window.compute(lnumberElement.value, rnumberElement.value).then((result) => {
+            computeResultElement.textContent = result;
+            computeElement.disabled = false;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
